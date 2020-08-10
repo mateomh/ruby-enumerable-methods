@@ -27,13 +27,28 @@ module Enumerable
     result
   end
 
-  def my_all?(&block)
+  def my_all?(argument=nil)
     Array(self).my_each do |item|
-      next unless !yield(item)
-
+      if !block_given?
+        next unless !item.is_a? argument
+      else
+        next unless !yield(item)
+      end
       return false
     end
     true
+  end
+
+  def my_any?(argument=nil)
+    Array(self).my_each do |item|
+      if !block_given?
+        next unless item.is_a? argument
+      else
+        next unless yield(item)
+      end
+      return true
+    end
+    false
   end
   
 end

@@ -23,5 +23,10 @@ puts "- - - -"
 
 puts "Test #my_all method"
 puts %w[ant bear cat].my_all? { |word| word.length >= 3 } #=> true
-puts [1, 2i, 3.14].all?(Numeric) #=> true
-puts %w[ant bear cat].all? { |word| word.length >= 4 } #=> false
+puts [1, 2i, 3.14].my_all?(Numeric) #=> true
+puts %w[ant bear cat].my_all? { |word| word.length >= 4 } #=> false
+
+puts "Test #my_all method"
+puts [nil, true, 99].my_any?(Integer)  #=> true
+puts %w[ant bear cat].my_any? { |word| word.length >= 3 } #=> true
+puts [].my_any?                                           #=> false
