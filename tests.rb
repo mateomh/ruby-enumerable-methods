@@ -14,3 +14,7 @@ my_array.my_each_with_index do |elem, index|
   puts "Element: " + elem + " | " + "Index: " + index.to_s
 end
 puts "- - - -"
+
+var1=(1..10).my_select { |i|  i % 3 == 0 }
+#var1=Array(my_array)
+puts var1 

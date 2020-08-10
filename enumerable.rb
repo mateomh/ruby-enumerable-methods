@@ -15,6 +15,18 @@ module Enumerable
       yield(self[index], index)
     end
   end
+
+  def my_select(&block)
+    result=[]
+    Array(self).my_each do |item|
+       next unless yield(item)
+
+       result.push(item)
+     end
+    
+    result
+  end
+
 end
 
 
