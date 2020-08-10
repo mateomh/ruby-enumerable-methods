@@ -17,7 +17,7 @@ module Enumerable
   end
 
   def my_select(&block)
-    result=[]
+    result = []
     Array(self).my_each do |item|
        next unless yield(item)
 
@@ -27,6 +27,15 @@ module Enumerable
     result
   end
 
+  def my_all?(&block)
+    Array(self).my_each do |item|
+      next unless !yield(item)
+
+      return false
+    end
+    true
+  end
+  
 end
 
 

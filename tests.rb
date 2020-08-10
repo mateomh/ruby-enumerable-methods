@@ -15,6 +15,13 @@ my_array.my_each_with_index do |elem, index|
 end
 puts "- - - -"
 
-var1=(1..10).my_select { |i|  i % 3 == 0 }
-#var1=Array(my_array)
-puts var1 
+puts "Test #my_select method"
+var1 = (1..10).my_select { |i|  i % 3 == 0 }
+print var1
+print "\n"
+puts "- - - -"
+
+puts "Test #my_all method"
+puts %w[ant bear cat].my_all? { |word| word.length >= 3 } #=> true
+puts [1, 2i, 3.14].all?(Numeric) #=> true
+puts %w[ant bear cat].all? { |word| word.length >= 4 } #=> false
