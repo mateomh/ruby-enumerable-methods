@@ -62,7 +62,7 @@ module Enumerable
         else
           if argument.class!=Regexp # When is not a regular expression
             if argument.class==Class 
-              next unless item.is_a? argument 
+              next unless item.is_a? argument
             else                    # When it is a value
               next unless item==argument
             end
@@ -78,18 +78,31 @@ module Enumerable
     false
   end
 
-  # def my_any?(argument=nil)
-  #   Array(self).my_each do |item|
-  #     if !block_given?
-  #       next unless item.is_a? argument
-  #     else
-  #       next unless yield(item)
-  #     end
-  #     return true
-  #   end
-  #   false
-  # end
-  
+  def my_none?(argument=nil)
+    Array(self).my_each do |item|
+      if !block_given?
+        if argument==nil # no argument passed
+          next unless item
+        else
+          if argument.class!=Regexp # When is not a regular expression
+            if argument.class==Class
+              next unless item.is_a? argument
+            else                    # When it is a value
+              next unless item==argument
+            end
+          else
+            next unless (item=~argument)!=nil
+          end
+        end
+      else
+        next if !yield(item)
+      end
+      return false
+    end
+    true
+
+  end
+
 end
 
 
