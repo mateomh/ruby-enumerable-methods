@@ -93,9 +93,13 @@ puts "My_Map method"
 print (1..2).my_map { |x| x * x }
 print "\n"
 
-my_proc = Proc.new {|x|  x * x }
+my_proc = Proc.new {|x| x * x }
+puts "My_Map method with block"
+print [1, 2, 7, 4, 5].my_map { |x| x * x }
+print "\n"
 puts "My_Map method which takes proc as an argument"
-puts [1, 2, 7, 4, 5].my_map(my_proc)
+print [1, 2, 7, 4, 5].my_map(my_proc)
+print "\n"
 
 print "\n"
 puts "My_Map method"
@@ -108,12 +112,10 @@ puts (5..10).my_inject(:*)                             #=> 151200
 puts (5..10).my_inject { |sum, n| sum + n }            #=> 45
 puts (5..10).my_inject(2) { |sum, n| sum + n }         #=> 46
 puts (5..10).my_inject(2) { |prod, n| prod * n }         #=> 302400
-p (5..10).my_inject(2, :*)                             #=> 302400
+puts (5..10).my_inject(2, :*)                             #=> 302400
+p (5..10).my_inject(1) { |product, n| product * n } #=> 151200
 puts "- - - -\n"
 
 puts "Test #multiply_els method"
 puts multiply_els([2,4,5])
 puts "- - - -\n"
-
-
-
