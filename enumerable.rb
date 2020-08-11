@@ -1,8 +1,6 @@
 
 module Enumerable
   def my_each(&block)
-    # your code here
-    #
     return self if !block_given?
 
     self.length().times do |index|
@@ -11,8 +9,6 @@ module Enumerable
   end
 
   def my_each_with_index(&block)
-    # your code here
-    #
     return self if !block_given?
 
     self.length().times do |index|
@@ -37,7 +33,20 @@ module Enumerable
   def my_all?(argument=nil)
     Array(self).my_each do |item|
       if !block_given?
-        next unless !item.is_a? argument
+        if argument==nil # no argument passed
+          next if item
+        else
+          if argument.class!=Regexp # When is not a regular expression
+            if argument.class==Class 
+              next if item.is_a? argument 
+            else                    # When it is a value
+              next if item==argument
+            end
+          else
+            next if (item=~argument)!=nil
+          end
+          
+        end
       else
         next unless !yield(item)
       end
