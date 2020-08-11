@@ -74,3 +74,30 @@ puts ary.my_count(2) #=> 2
 puts ary.my_count(&:even?) #=> 3
 puts ary.my_count(&:odd?) #=> 1
 puts "- - - -\n"
+
+puts "Test #my_map method"
+print (1..4).my_map { |i| i*i }      #=> [1, 4, 9, 16]
+print "\n"
+print (1..4).my_map { "cat"  }   #=> ["cat", "cat", "cat", "cat"]
+print "\n"
+puts "Map method"
+print [1, 2, 7, 4, 5].map { |x| x * x }
+print "\n"
+puts "My_Map method"
+print [1, 2, 7, 4, 5].my_map { |x| x * x }
+print "\n"
+puts "Map method"
+print (1..2).map { |x| x * x }
+print "\n"
+puts "My_Map method"
+print (1..2).my_map { |x| x * x }
+print "\n"
+#myMapP = proc { |x| x * x }
+#puts "Map method"
+#puts [1, 2, 7, 4, 5].map(myMapP)
+#puts "My_Map method"
+#puts [1, 2, 7, 4, 5].my_map(myMapP)
+print "\n"
+puts "My_Map method"
+print [1, 2, 7, 4, 5].my_map
+print "\n"

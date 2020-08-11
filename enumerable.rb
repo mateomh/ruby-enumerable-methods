@@ -123,6 +123,15 @@ module Enumerable
     counter
   end
 
+  def my_map
+    return self if !block_given?
+    aux_ary=[]
+    Array(self).my_each do |item|
+      aux_ary.push(yield(item))
+    end
+    aux_ary
+  end
+
 end
 
 
