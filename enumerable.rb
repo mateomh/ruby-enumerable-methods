@@ -103,8 +103,27 @@ module Enumerable
 
   end
 
-end
+  def my_count(argument=nil)
+    counter = 0
+    Array(self).my_each do |item|
+      if(!block_given?)
+        if argument != nil
+          next if item != argument
+        else
+          return self.length()
+        end
+        counter += 1
+      else
+        if yield(item) == true
+          counter += 1
+        end
+      end
+    end
 
+    counter
+  end
+
+end
 
 
 
