@@ -39,6 +39,14 @@ puts ["a", "a"].my_all?("a")                                   #=> true
 puts "- - - -\n"
 
 puts "Test #my_any method"
-puts [nil, true, 99].my_any?(Integer)  #=> true
-puts %w[ant bear cat].my_any? { |word| word.length >= 3 } #=> true
-puts [].my_any?                                           #=> false
+p %w[ant bear cat].my_any? { |word| word.length >= 3 } #=> true
+p %w[ant bear cat].my_any? { |word| word.length >= 4 } #=> true
+p %w[ant bear cat].my_any?(/d/) #=> false
+p [nil, true, 99].my_any?(Integer) #=> true
+p [nil, true, 99].my_any? #=> true
+p [].my_any? #=> false
+p [1, 2, 3, 's'].my_any?(String) #=> true
+p [1, 2, 3, 's'].my_any?(Numeric) #=> true
+p [1, 2, 3].my_any?(String) #=> false
+p [1, 2].my_any?(1) # true
+p [1, 1].my_any?(1) # true
