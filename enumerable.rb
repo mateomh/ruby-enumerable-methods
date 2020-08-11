@@ -3,6 +3,8 @@ module Enumerable
   def my_each(&block)
     # your code here
     #
+    return self if !block_given?
+
     self.length().times do |index|
       yield(self[index])
     end
@@ -11,6 +13,8 @@ module Enumerable
   def my_each_with_index(&block)
     # your code here
     #
+    return self if !block_given?
+
     self.length().times do |index|
       yield(self[index], index)
     end
@@ -18,6 +22,9 @@ module Enumerable
 
   def my_select(&block)
     result = []
+
+    return self if !block_given?
+
     Array(self).my_each do |item|
        next unless yield(item)
 

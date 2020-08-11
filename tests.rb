@@ -2,11 +2,15 @@ require './enumerable'
 
 my_array = %w[jerry tom dine]
 
+test_array1 = [11, 2, 3, 56]
+test_array2 = %w(a b c d)
+test_array3 = %w[f g h i]
 
 puts "Test #my_each method"
-my_array.my_each do |elem|
-  puts elem
-end
+p 'my_each'
+test_array1.my_each { |x| p x }
+test_array2.my_each { |x| p x }
+# p test_array2.my_each
 puts "- - - -"
 
 puts "Test #my_each_with_index method"
