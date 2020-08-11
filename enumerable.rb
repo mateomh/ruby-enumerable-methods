@@ -123,13 +123,23 @@ module Enumerable
     counter
   end
 
-  def my_map
+  def my_map(argument=nil)
+    aux_ary = []
+
+    if argument.class == Proc
+      Array(self).my_each do |item|
+        aux_ary.push( argument.call item )
+      end
+      return aux_ary
+    end
+
     return self if !block_given?
-    aux_ary=[]
+
     Array(self).my_each do |item|
       aux_ary.push(yield(item))
     end
     aux_ary
+
   end
 
   def my_inject(*arguments)

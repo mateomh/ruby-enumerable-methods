@@ -92,11 +92,11 @@ print "\n"
 puts "My_Map method"
 print (1..2).my_map { |x| x * x }
 print "\n"
-#myMapP = proc { |x| x * x }
-#puts "Map method"
-#puts [1, 2, 7, 4, 5].map(myMapP)
-#puts "My_Map method"
-#puts [1, 2, 7, 4, 5].my_map(myMapP)
+
+my_proc = Proc.new {|x|  x * x }
+puts "My_Map method which takes proc as an argument"
+puts [1, 2, 7, 4, 5].my_map(my_proc)
+
 print "\n"
 puts "My_Map method"
 print [1, 2, 7, 4, 5].my_map
