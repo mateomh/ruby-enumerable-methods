@@ -101,3 +101,10 @@ print "\n"
 puts "My_Map method"
 print [1, 2, 7, 4, 5].my_map
 print "\n"
+
+puts "Test #my_inject method"
+puts (5..10).my_inject(:*)                             #=> 151200
+puts (5..10).my_inject { |sum, n| sum + n }            #=> 45
+puts (5..10).my_inject(2) { |sum, n| sum + n }         #=> 46
+puts (5..10).my_inject(2) { |prod, n| prod * n }         #=> 302400
+p (5..10).my_inject(2, :*)                             #=> 302400

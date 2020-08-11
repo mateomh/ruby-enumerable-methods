@@ -132,6 +132,29 @@ module Enumerable
     aux_ary
   end
 
+  def my_inject(*arguments)
+    skip_flag=false
+    acum=Array(self)[0]
+    if (arguments[0].class==Symbol) || (arguments[0]==nil)
+      skip_flag=true
+    elsif arguments[0].is_a? Numeric
+      acum=arguments[0]
+    end
+    Array(self).my_each_with_index do |item,index|
+      next if skip_flag && index==0
+      if block_given?
+          acum=yield(acum,item)
+      else
+        if arguments[0].class==Symbol
+          acum=acum.send(arguments[0],item)
+        elsif arguments[0].is_a? Numeric
+          acum=acum.send(arguments[1],item)
+        end
+      end
+    end
+    acum
+  end
+
 end
 
 
