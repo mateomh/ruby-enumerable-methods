@@ -1,11 +1,12 @@
 # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/ModuleLength
 module Enumerable
   def my_each()
-    return self unless block_given?
+    return self.to_enum unless block_given?
 
-    length.times do |index|
-      yield(self[index])
+    Array(self).length.times do |index|
+      yield(Array(self)[index])
     end
+    self
   end
 
   def my_each_with_index()
