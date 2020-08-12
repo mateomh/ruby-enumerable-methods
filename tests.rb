@@ -77,9 +77,9 @@ puts ary.my_count(&:odd?) #=> 5
 puts "- - - -\n"
 
 puts 'Test #my_map method'
-print ((1..4).my_map { |i| i * i }) #=> [1, 4, 9, 16]
+print((1..4).my_map { |i| i * i }) #=> [1, 4, 9, 16]
 print "\n"
-print ((1..4).my_map { 'cat' }) #=> ["cat", "cat", "cat", "cat"]
+print((1..4).my_map { 'cat' }) #=> ["cat", "cat", "cat", "cat"]
 print "\n"
 puts 'Map method'
 print([1, 2, 7, 4, 5].map { |x| x * x })
@@ -88,10 +88,10 @@ puts 'My_Map method'
 print([1, 2, 7, 4, 5].my_map { |x| x * x })
 print "\n"
 puts 'Map method'
-print ((1..2).map { |x| x * x })
+print((1..2).map { |x| x * x })
 print "\n"
 puts 'My_Map method'
-print ((1..2).my_map { |x| x * x })
+print((1..2).my_map { |x| x * x })
 print "\n"
 
 my_proc = proc { |x| x * x }
@@ -110,7 +110,7 @@ puts "- - - -\n"
 
 puts 'Test #my_inject method'
 puts(5..10).my_inject(:*) #=> 151200
-puts ((5..10).my_inject { |sum, n| sum + n }) #=> 45
+puts((5..10).my_inject { |sum, n| sum + n }) #=> 45
 puts(5..10).my_inject(2) { |sum, n| sum + n } #=> 47
 puts(5..10).my_inject(2) { |prod, n| prod * n } #=> 302400
 puts(5..10).my_inject(2, :*) #=> 302400
