@@ -10,7 +10,7 @@ module Enumerable
   end
 
   def my_each_with_index()
-    return self unless block_given?
+    return self.to_enum unless block_given?
 
     length.times do |index|
       yield(self[index], index)

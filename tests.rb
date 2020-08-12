@@ -4,6 +4,7 @@ my_array = %w[jerry tom dine]
 
 test_array1 = [11, 2, 3, 56]
 test_array2 = %w[a b c d]
+test_hash = {:name => "John", :last => "Doe"}
 
 
 puts 'Test #my_each method'
@@ -14,6 +15,7 @@ print "\n"
 print test_array2.my_each
 print "\n"
 p (1..10).my_each { |x| print x } #range
+p test_hash.my_each { |x| print x } #hash
 puts '- - - -'
 
 puts 'Test #my_each_with_index method'
