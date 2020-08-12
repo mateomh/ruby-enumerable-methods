@@ -115,7 +115,7 @@ print [1, 2, 7, 4, 5].my_map(my_proc)
 print "\n"
 
 print "\n"
-puts 'My_Map method'
+puts 'My_Map method without block'
 print [1, 2, 7, 4, 5].my_map
 print "\n"
 puts "- - - -\n"

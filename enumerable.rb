@@ -118,7 +118,7 @@ module Enumerable
       return aux_ary
     end
 
-    return self unless block_given?
+    return self.to_enum unless block_given?
 
     Array(self).my_each do |item|
       aux_ary.push(yield(item))
