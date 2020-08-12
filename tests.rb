@@ -4,8 +4,7 @@ my_array = %w[jerry tom dine]
 
 test_array1 = [11, 2, 3, 56]
 test_array2 = %w[a b c d]
-test_hash = {:name => "John", :last => "Doe"}
-
+test_hash = { name: 'John', last: 'Doe' }
 
 # puts 'Test #my_each method'
 # p test_array1.my_each { |x| print x }
@@ -68,13 +67,13 @@ puts %w[ant bear cat].any?(/x/)
 # puts "- - - -\n"
 
 puts 'Test #my_none method'
-puts %w[ant bear cat].my_none?(/d/) #=> true
-puts %w[ant bear cat].none?(/d/)
+puts %w[ant bear cat].my_none?(/a/) #=> true
+puts %w[ant bear cat].none?(/a/)
 # puts(%w[ant bear cat].my_none? { |word| word.length == 5 }) #=> true
 # puts(%w[ant bear cat].my_none? { |word| word.length >= 4 }) #=> false
 # puts [1, 3.14, 42].my_none?(Float) #=> false
 # puts [].my_none? #=> true
-#puts [nil].my_none? #=> true
+# puts [nil].my_none? #=> true
 # puts [nil, false].my_none? #=> true
 # puts [nil, false, true].my_none? #=> false
 # puts [1, 2, 3].my_none?(1) #=> false

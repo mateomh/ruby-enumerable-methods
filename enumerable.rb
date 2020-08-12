@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/ModuleLength
 module Enumerable
   def my_each()
-    return self.to_enum unless block_given?
+    return to_enum unless block_given?
 
     Array(self).length.times do |index|
       yield(Array(self)[index])
@@ -10,7 +10,7 @@ module Enumerable
   end
 
   def my_each_with_index()
-    return self.to_enum unless block_given?
+    return to_enum unless block_given?
 
     Array(self).length.times do |index|
       yield(Array(self)[index], index)
@@ -21,7 +21,7 @@ module Enumerable
   def my_select()
     result = []
 
-    return self.to_enum unless block_given?
+    return to_enum unless block_given?
 
     Array(self).my_each do |item|
       next unless yield(item)
@@ -39,8 +39,8 @@ module Enumerable
           next if item
         elsif argument.class == Class
           next if item.is_a? argument
-        elsif (argument.class == Regexp)
-          next unless !(item =~ argument)
+        elsif argument.class == Regexp
+          next if item =~ argument
         elsif (item.is_a? Numeric) || (item.is_a? String) # When it is a value
           next if item == argument
         end
@@ -59,8 +59,8 @@ module Enumerable
           next unless item
         elsif argument.class == Class
           next unless item.is_a? argument
-        elsif (argument.class == Regexp)
-          next unless (item =~ argument)
+        elsif argument.class == Regexp
+          next unless item =~ argument
         elsif (item.is_a? Numeric) || (item.is_a? String) # When it is a value
           next unless item == argument
         end
@@ -79,8 +79,8 @@ module Enumerable
           next unless item
         elsif argument.class == Class
           next unless item.is_a? argument
-        elsif (argument.class == Regexp)
-          next unless (item =~ argument)
+        elsif argument.class == Regexp
+          next unless item =~ argument
         elsif (item.is_a? Numeric) || (item.is_a? String)
           next unless item == argument
         end
@@ -118,7 +118,7 @@ module Enumerable
       return aux_ary
     end
 
-    return self.to_enum unless block_given?
+    return to_enum unless block_given?
 
     Array(self).my_each do |item|
       aux_ary.push(yield(item))
