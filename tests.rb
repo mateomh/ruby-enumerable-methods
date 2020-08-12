@@ -35,6 +35,7 @@ puts 'Test #my_select method'
 var1 = (1..10).my_select { |i| (i % 3).zero? }
 print var1 #=> [3, 6, 9]
 print "\n"
+puts((1..10).my_select)
 puts "- - - -\n"
 
 puts 'Test #my_all method'
@@ -85,6 +86,7 @@ puts ary.my_count(9) #=> 1
 puts ary.my_count(2) #=> 1
 puts ary.my_count(&:even?) #=> 2
 puts ary.my_count(&:odd?) #=> 5
+puts (1..10).my_count #=> 10
 puts "- - - -\n"
 
 puts 'Test #my_map method'
@@ -114,7 +116,7 @@ print [1, 2, 7, 4, 5].my_map(my_proc)
 print "\n"
 
 print "\n"
-puts 'My_Map method'
+puts 'My_Map method without block'
 print [1, 2, 7, 4, 5].my_map
 print "\n"
 puts "- - - -\n"

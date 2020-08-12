@@ -21,7 +21,7 @@ module Enumerable
   def my_select()
     result = []
 
-    return self unless block_given?
+    return self.to_enum unless block_given?
 
     Array(self).my_each do |item|
       next unless yield(item)
@@ -96,7 +96,7 @@ module Enumerable
     counter = 0
     Array(self).my_each do |item|
       if !block_given?
-        return length if argument.nil?
+        return Array(self).length if argument.nil?
         next if item != argument
 
         counter += 1
@@ -118,7 +118,7 @@ module Enumerable
       return aux_ary
     end
 
-    return self unless block_given?
+    return self.to_enum unless block_given?
 
     Array(self).my_each do |item|
       aux_ary.push(yield(item))
