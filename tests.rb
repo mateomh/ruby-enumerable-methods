@@ -3,42 +3,44 @@ require './enumerable'
 my_array = %w[jerry tom dine]
 
 test_array1 = [11, 2, 3, 56]
-test_array2 = %w(a b c d)
+test_array2 = %w[a b c d]
 test_array3 = %w[f g h i]
 
-puts "Test #my_each method"
-puts 'my_each'
-test_array1.my_each { |x| p x }
-test_array2.my_each { |x| p x }
-# p test_array2.my_each
-puts "- - - -"
+puts 'Test #my_each method'
+test_array1.my_each { |x| print x }
+print "\n"
+test_array2.my_each { |x| print x }
+print "\n"
+print test_array2.my_each
+print "\n"
+puts '- - - -'
 
-puts "Test #my_each_with_index method"
+puts 'Test #my_each_with_index method'
 my_array.my_each_with_index do |elem, index|
-  puts "Element: " + elem + " | " + "Index: " + index.to_s
+  puts 'Element: ' + elem + ' | ' + 'Index: ' + index.to_s
 end
-puts "- - - -"
+puts '- - - -'
 
-puts "Test #my_select method"
-var1 = (1..10).my_select { |i|  i % 3 == 0 }
-print var1
+puts 'Test #my_select method'
+var1 = (1..10).my_select { |i| (i % 3).zero? }
+print var1 #=> [3, 6, 9]
 print "\n"
 puts "- - - -\n"
 
 puts 'Test #my_all method'
 puts %w[ant bear cat].my_all? { |word| word.length >= 3 } #=> true
 puts %w[ant bear cat].my_all? { |word| word.length >= 4 } #=> false
-puts %w[ant bear cat].my_all?(/t/)                        #=> false
-puts [1, 2i, 3.14].my_all?(Numeric)                       #=> true
-puts [nil, true, 99].my_all?                              #=> false
-puts [].my_all?                                           #=> true
-puts [1, 2].my_all?(1)                                   #=> false
-puts [1, 1].my_all?(1)                                   #=> true
-puts ["a", "b"].my_all?("b")                                   #=> false
-puts ["a", "a"].my_all?("a")                                   #=> true
+puts %w[ant bear cat].my_all?(/t/) #=> false
+puts [1, 2i, 3.14].my_all?(Numeric) #=> true
+puts [nil, true, 99].my_all? #=> false
+puts [].my_all? #=> true
+puts [1, 2].my_all?(1) #=> false
+puts [1, 1].my_all?(1) #=> true
+puts %w[a b].my_all?('b') #=> false
+puts %w[a a].my_all?('a') #=> true
 puts "- - - -\n"
 
-puts "Test #my_any method"
+puts 'Test #my_any method'
 puts %w[ant bear cat].my_any? { |word| word.length >= 3 } #=> true
 puts %w[ant bear cat].my_any? { |word| word.length >= 4 } #=> true
 puts %w[ant bear cat].my_any?(/d/) #=> false
@@ -52,7 +54,7 @@ puts [1, 2].my_any?(1) # true
 puts [1, 1].my_any?(1) # true
 puts "- - - -\n"
 
-puts "Test #my_none method"
+puts 'Test #my_none method'
 puts %w[ant bear cat].my_none?(/d/) #=> true
 puts %w[ant bear cat].my_none? { |word| word.length == 5 } #=> true
 puts %w[ant bear cat].my_none? { |word| word.length >= 4 } #=> false
@@ -63,59 +65,59 @@ puts [nil, false].my_none? #=> true
 puts [nil, false, true].my_none? #=> false
 puts [1, 2, 3].my_none?(1) #=> false
 puts [1, 2, 3].my_none?(4) #=> true
-puts [nil, false, nil, false].my_none? #true
+puts [nil, false, nil, false].my_none? # true
 puts "- - - -\n"
 
-puts "Test #my_count method"
-ary = [1, 2, 9, 7, 11, 23, 8,]
-puts ary.my_count #=> 4
-puts ary.my_count(9) #=> 0
-puts ary.my_count(2) #=> 2
-puts ary.my_count(&:even?) #=> 3
-puts ary.my_count(&:odd?) #=> 1
+puts 'Test #my_count method'
+ary = [1, 2, 9, 7, 11, 23, 8]
+puts ary.my_count #=> 7
+puts ary.my_count(9) #=> 1
+puts ary.my_count(2) #=> 1
+puts ary.my_count(&:even?) #=> 2
+puts ary.my_count(&:odd?) #=> 5
 puts "- - - -\n"
 
-puts "Test #my_map method"
-print (1..4).my_map { |i| i*i }      #=> [1, 4, 9, 16]
+puts 'Test #my_map method'
+print (1..4).my_map { |i| i * i } #=> [1, 4, 9, 16]
 print "\n"
-print (1..4).my_map { "cat"  }   #=> ["cat", "cat", "cat", "cat"]
+print (1..4).my_map { 'cat' } #=> ["cat", "cat", "cat", "cat"]
 print "\n"
-puts "Map method"
+puts 'Map method'
 print [1, 2, 7, 4, 5].map { |x| x * x }
 print "\n"
-puts "My_Map method"
+puts 'My_Map method'
 print [1, 2, 7, 4, 5].my_map { |x| x * x }
 print "\n"
-puts "Map method"
+puts 'Map method'
 print (1..2).map { |x| x * x }
 print "\n"
-puts "My_Map method"
+puts 'My_Map method'
 print (1..2).my_map { |x| x * x }
 print "\n"
 
-my_proc = Proc.new {|x| x * x }
-puts "My_Map method with block"
+my_proc = proc { |x| x * x }
+puts 'My_Map method with block'
 print [1, 2, 7, 4, 5].my_map { |x| x * x }
 print "\n"
-puts "My_Map method which takes proc as an argument"
+puts 'My_Map method which takes proc as an argument'
 print [1, 2, 7, 4, 5].my_map(my_proc)
 print "\n"
 
 print "\n"
-puts "My_Map method"
+puts 'My_Map method'
 print [1, 2, 7, 4, 5].my_map
 print "\n"
 puts "- - - -\n"
 
-puts "Test #my_inject method"
-puts (5..10).my_inject(:*)                             #=> 151200
-puts (5..10).my_inject { |sum, n| sum + n }            #=> 45
-puts (5..10).my_inject(2) { |sum, n| sum + n }         #=> 46
-puts (5..10).my_inject(2) { |prod, n| prod * n }         #=> 302400
-puts (5..10).my_inject(2, :*)                             #=> 302400
-p (5..10).my_inject(1) { |product, n| product * n } #=> 151200
+puts 'Test #my_inject method'
+puts (5..10).my_inject(:*) #=> 151200
+puts (5..10).my_inject { |sum, n| sum + n } #=> 45
+puts (5..10).my_inject(2) { |sum, n| sum + n } #=> 47
+puts (5..10).my_inject(2) { |prod, n| prod * n } #=> 302400
+puts (5..10).my_inject(2, :*) #=> 302400
+puts (5..10).my_inject(1) { |product, n| product * n } #=> 151200
 puts "- - - -\n"
 
-puts "Test #multiply_els method"
-puts multiply_els([2,4,5])
+puts 'Test #multiply_els method'
+puts multiply_els([2, 4, 5]) #=> 40
 puts "- - - -\n"
