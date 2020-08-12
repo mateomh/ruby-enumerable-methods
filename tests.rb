@@ -86,6 +86,7 @@ puts ary.my_count(9) #=> 1
 puts ary.my_count(2) #=> 1
 puts ary.my_count(&:even?) #=> 2
 puts ary.my_count(&:odd?) #=> 5
+puts (1..10).my_count #=> 10
 puts "- - - -\n"
 
 puts 'Test #my_map method'

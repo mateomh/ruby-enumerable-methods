@@ -96,7 +96,7 @@ module Enumerable
     counter = 0
     Array(self).my_each do |item|
       if !block_given?
-        return length if argument.nil?
+        return Array(self).length if argument.nil?
         next if item != argument
 
         counter += 1
