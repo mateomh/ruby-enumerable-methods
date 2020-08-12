@@ -35,6 +35,7 @@ puts 'Test #my_select method'
 var1 = (1..10).my_select { |i| (i % 3).zero? }
 print var1 #=> [3, 6, 9]
 print "\n"
+puts((1..10).my_select)
 puts "- - - -\n"
 
 puts 'Test #my_all method'

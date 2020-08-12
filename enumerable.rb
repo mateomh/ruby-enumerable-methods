@@ -21,7 +21,7 @@ module Enumerable
   def my_select()
     result = []
 
-    return self unless block_given?
+    return self.to_enum unless block_given?
 
     Array(self).my_each do |item|
       next unless yield(item)
