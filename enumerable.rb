@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/ModuleLength
 module Enumerable
   def my_each()
     return self unless block_given?
@@ -145,6 +146,8 @@ module Enumerable
     acum
   end
 end
+
+# rubocop:enable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/ModuleLength
 
 def multiply_els(my_arr)
   my_arr.my_inject(:*)
