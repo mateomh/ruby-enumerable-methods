@@ -6,21 +6,21 @@ test_array1 = [11, 2, 3, 56]
 test_array2 = %w[a b c d]
 test_hash = { name: 'John', last: 'Doe' }
 
-# puts 'Test #my_each method'
-# p test_array1.my_each { |x| print x }
-# print "\n"
-# p test_array2.my_each { |x| print x }
+puts 'Test #my_each method'
+p(test_array1.my_each { |x| print x })
+print "\n"
+p(test_array2.my_each { |x| print x })
 # print "\n"
 # print test_array2.my_each
 # print "\n"
 # p (1..10).my_each { |x| print x } #range
-# p test_hash.my_each { |x| print x } #hash
-# puts '- - - -'
+p(test_hash.my_each { |x| print x }) # hash
+puts '- - - -'
 
-# puts 'Test #my_each_with_index method'
-# my_array.my_each_with_index do |elem, index|
-#   puts "Element: #{elem}  | Index:  #{index}"
-# end
+puts 'Test #my_each_with_index method'
+my_array.my_each_with_index do |elem, index|
+  puts "Element: #{elem}  | Index:  #{index}"
+end
 # p my_array.my_each_with_index
 # (1..5).my_each_with_index do |elem, index|
 #   puts "Element: #{elem}  | Index:  #{index}"
@@ -41,7 +41,7 @@ puts 'Test #my_all method'
 # puts(%w[ant bear cat].my_all? { |word| word.length >= 3 }) #=> true
 # puts(%w[ant bear cat].my_all? { |word| word.length >= 4 }) #=> false
 puts %w[ant bear cat].my_all?(/t/) #=> false
-puts %w[ant bear cat].all?(/t/)
+# puts %w[ant bear cat].all?(/t/)
 # puts [1, 2i, 3.14].my_all?(Numeric) #=> true
 # puts [nil, true, 99].my_all? #=> false
 # puts [].my_all? #=> true
@@ -55,7 +55,7 @@ puts 'Test #my_any method'
 # puts(%w[ant bear cat].my_any? { |word| word.length >= 3 }) #=> true
 # puts(%w[ant bear cat].my_any? { |word| word.length >= 4 }) #=> true
 puts %w[ant bear cat].my_any?(/x/) #=> false
-puts %w[ant bear cat].any?(/x/)
+# puts %w[ant bear cat].any?(/x/)
 # puts [nil, true, 99].my_any?(Integer) #=> true
 # puts [nil, true, 99].my_any? #=> true
 # puts [].my_any? #=> false
@@ -68,7 +68,7 @@ puts %w[ant bear cat].any?(/x/)
 
 puts 'Test #my_none method'
 puts %w[ant bear cat].my_none?(/a/) #=> true
-puts %w[ant bear cat].none?(/a/)
+# puts %w[ant bear cat].none?(/a/)
 # puts(%w[ant bear cat].my_none? { |word| word.length == 5 }) #=> true
 # puts(%w[ant bear cat].my_none? { |word| word.length >= 4 }) #=> false
 # puts [1, 3.14, 42].my_none?(Float) #=> false
