@@ -11,10 +11,11 @@ module Enumerable
 
   def my_each_with_index()
     return self.to_enum unless block_given?
-
-    length.times do |index|
-      yield(self[index], index)
+    
+    Array(self).length.times do |index|
+      yield(Array(self)[index], index)
     end
+    self
   end
 
   def my_select()

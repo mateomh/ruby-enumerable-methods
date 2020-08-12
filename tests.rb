@@ -20,7 +20,14 @@ puts '- - - -'
 
 puts 'Test #my_each_with_index method'
 my_array.my_each_with_index do |elem, index|
-  puts 'Element: ' + elem + ' | ' + 'Index: ' + index.to_s
+  puts "Element: #{elem}  | Index:  #{index}"
+end
+p my_array.my_each_with_index
+(1..5).my_each_with_index do |elem, index|
+  puts "Element: #{elem}  | Index:  #{index}"
+end
+test_hash.my_each_with_index do |elem, index|
+  puts "Element: #{elem}  | Index:  #{index}"
 end
 puts '- - - -'
 
