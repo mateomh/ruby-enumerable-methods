@@ -11,7 +11,7 @@ module Enumerable
 
   def my_each_with_index()
     return self.to_enum unless block_given?
-    
+
     Array(self).length.times do |index|
       yield(Array(self)[index], index)
     end
@@ -79,10 +79,10 @@ module Enumerable
           next unless item
         elsif argument.class == Class
           next unless item.is_a? argument
+        elsif (argument.class == Regexp)
+          next unless (item =~ argument)
         elsif (item.is_a? Numeric) || (item.is_a? String)
           next unless item == argument
-        elsif (argument.class == Regexp) && (item =~ argument).nil?
-          next
         end
       else
         next unless yield(item)

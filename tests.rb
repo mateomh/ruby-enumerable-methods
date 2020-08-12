@@ -71,7 +71,7 @@ puts %w[ant bear cat].my_none?(/d/) #=> true
 # puts(%w[ant bear cat].my_none? { |word| word.length >= 4 }) #=> false
 # puts [1, 3.14, 42].my_none?(Float) #=> false
 # puts [].my_none? #=> true
-# puts [nil].my_none? #=> true
+puts [nil].my_none? #=> true
 # puts [nil, false].my_none? #=> true
 # puts [nil, false, true].my_none? #=> false
 # puts [1, 2, 3].my_none?(1) #=> false
@@ -122,12 +122,13 @@ print "\n"
 puts "- - - -\n"
 
 puts 'Test #my_inject method'
-puts(5..10).my_inject(:*) #=> 151200
-puts((5..10).my_inject { |sum, n| sum + n }) #=> 45
-puts(5..10).my_inject(2) { |sum, n| sum + n } #=> 47
-puts(5..10).my_inject(2) { |prod, n| prod * n } #=> 302400
-puts(5..10).my_inject(2, :*) #=> 302400
-puts(5..10).my_inject(1) { |product, n| product * n } #=> 151200
+puts (5..10).my_inject(:*) #=> 151200
+puts ((5..10).my_inject { |sum, n| sum + n }) #=> 45
+puts (5..10).my_inject(2) { |sum, n| sum + n } #=> 47
+puts (5..10).my_inject(2) { |prod, n| prod * n } #=> 302400
+puts (5..10).my_inject(2, :*) #=> 302400
+puts (5..10).my_inject(1) { |product, n| product * n } #=> 151200
+puts (5..10).my_inject
 puts "- - - -\n"
 
 puts 'Test #multiply_els method'
