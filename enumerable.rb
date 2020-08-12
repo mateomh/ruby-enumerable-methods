@@ -39,10 +39,10 @@ module Enumerable
           next if item
         elsif argument.class == Class
           next if item.is_a? argument
+        elsif (argument.class == Regexp)
+          next unless !(item =~ argument)
         elsif (item.is_a? Numeric) || (item.is_a? String) # When it is a value
           next if item == argument
-        elsif (argument.class == Regexp) && !(item =~ argument).nil?
-          next
         end
       elsif yield(item)
         next
@@ -59,10 +59,10 @@ module Enumerable
           next unless item
         elsif argument.class == Class
           next unless item.is_a? argument
+        elsif (argument.class == Regexp)
+          next unless (item =~ argument)
         elsif (item.is_a? Numeric) || (item.is_a? String) # When it is a value
           next unless item == argument
-        elsif (argument.class == Regexp) && (item =~ argument).nil?
-          next
         end
       else
         next unless yield(item)
