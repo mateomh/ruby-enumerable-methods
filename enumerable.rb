@@ -127,6 +127,11 @@ module Enumerable
   end
 
   def my_inject(*arguments)
+
+    if !block_given? or arguments[0] === nil
+      raise LocalJumpError.new "NO BLOCK OR ARGUMENT GIVEN!"
+    end
+
     skip_flag = false
     acum = Array(self)[0]
     if (arguments[0].class == Symbol) || arguments[0].nil?
