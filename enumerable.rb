@@ -126,23 +126,25 @@ module Enumerable
     aux_ary
   end
 
-  def my_inject(*arguments)
+  def my_inject(arg1 = nil, arg2 = nil)
+    raise LocalJumpError, 'No block Given or Empty Argument' if arg1.nil? && arg2.nil? && !block_given?
+
     skip_flag = false
     acum = Array(self)[0]
-    if (arguments[0].class == Symbol) || arguments[0].nil?
+    if (arg1.class == Symbol) || arg1.nil?
       skip_flag = true
-    elsif arguments[0].is_a? Numeric
-      acum = arguments[0]
+    elsif arg1.is_a? Numeric
+      acum = arg1
     end
     Array(self).my_each_with_index do |item, index|
       next if skip_flag && index.zero?
 
       if block_given?
         acum = yield(acum, item)
-      elsif arguments[0].class == Symbol
-        acum = acum.send(arguments[0], item)
-      elsif arguments[0].is_a? Numeric
-        acum = acum.send(arguments[1], item)
+      elsif arg1.class == Symbol
+        acum = acum.send(arg1, item)
+      elsif arg1.is_a? Numeric
+        acum = acum.send(arg2, item)
       end
     end
     acum
