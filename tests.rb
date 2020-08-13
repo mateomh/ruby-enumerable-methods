@@ -124,13 +124,13 @@ puts %w[ant bear cat].my_none?(/a/) #=> true
 # puts "- - - -\n"
 
 puts 'Test #my_inject method'
-puts (5..10).my_inject(:*) #=> 151200
-puts ((5..10).my_inject { |sum, n| sum + n }) #=> 45
-puts (5..10).my_inject(2) { |sum, n| sum + n } #=> 47
-puts (5..10).my_inject(2) { |prod, n| prod * n } #=> 302400
-puts (5..10).my_inject(2, :*) #=> 302400
-puts (5..10).my_inject(1) { |product, n| product * n } #=> 151200
-puts (5..10).my_inject
+puts((5..10).my_inject(:*)) #=> 151200
+puts((5..10).my_inject { |sum, n| sum + n }) #=> 45
+puts((5..10).my_inject(2) { |sum, n| sum + n }) #=> 47
+puts((5..10).my_inject(2) { |prod, n| prod * n }) #=> 302400
+puts((5..10).my_inject(2, :*)) #=> 302400
+puts((5..10).my_inject(1) { |product, n| product * n }) #=> 151200
+puts((5..10).my_inject)
 puts "- - - -\n"
 
 # puts 'Test #multiply_els method'
