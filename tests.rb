@@ -130,7 +130,8 @@ puts((5..10).my_inject(2) { |sum, n| sum + n }) #=> 47
 puts((5..10).my_inject(2) { |prod, n| prod * n }) #=> 302400
 puts((5..10).my_inject(2, :*)) #=> 302400
 puts((5..10).my_inject(1) { |product, n| product * n }) #=> 151200
-puts((5..10).my_inject)
+puts("Without argument: #{(5..10).my_inject}")
+puts
 puts "- - - -\n"
 
 # puts 'Test #multiply_els method'
