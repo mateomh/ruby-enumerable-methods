@@ -33,20 +33,15 @@ module Enumerable
   end
 
   def my_all?(argument = nil)
-    Array(self).my_each do |item|
-      if !block_given?
-        if argument.nil? # no argument passed
-          next if item
-        elsif argument.class == Class
-          next if item.is_a? argument
-        elsif argument.class == Regexp
-          next if item =~ argument
-        elsif (item.is_a? Numeric) || (item.is_a? String) # When it is a value
-          next if item == argument
-        end
-      elsif yield(item)
-        next
+    if argument # check for an argument
+      Array(self).my_each do |item|
+        return false unless argument === item
       end
+    elsif block_given? # check for a block
+      Array(self).my_each do |item|
+        return false unless yield(item)
+      end
+    elsif Array(self).include?(nil) || Array(self).include?(false) # if no argument and no block provided
       return false
     end
     true
@@ -54,40 +49,26 @@ module Enumerable
 
   def my_any?(argument = nil)
     Array(self).my_each do |item|
-      if !block_given?
-        if argument.nil? # no argument passed
-          next unless item
-        elsif argument.class == Class
-          next unless item.is_a? argument
-        elsif argument.class == Regexp
-          next unless item =~ argument
-        elsif (item.is_a? Numeric) || (item.is_a? String) # When it is a value
-          next unless item == argument
-        end
-      else
-        next unless yield(item)
+      if argument # Argument given
+        return true if argument === item
+      elsif block_given? # block given
+        return true if yield(item)
+      elsif item
+        return true
       end
-      return true
     end
     false
   end
 
   def my_none?(argument = nil)
     Array(self).my_each do |item|
-      if !block_given?
-        if argument.nil? # no argument passed
-          next unless item
-        elsif argument.class == Class
-          next unless item.is_a? argument
-        elsif argument.class == Regexp
-          next unless item =~ argument
-        elsif (item.is_a? Numeric) || (item.is_a? String)
-          next unless item == argument
-        end
-      else
-        next unless yield(item)
+      if argument
+        return false if argument === item
+      elsif block_given?
+        return false if yield(item)
+      elsif item
+        return false
       end
-      return false
     end
     true
   end
@@ -129,23 +110,21 @@ module Enumerable
   def my_inject(*arguments)
     raise('LocalJumpError.new NO BLOCK OR ARGUMENT GIVEN!') if !block_given? && arguments.empty?
 
-    skip_flag = false
-    acum = Array(self)[0]
-    if (arguments[0].class == Symbol) || arguments[0].nil?
-      skip_flag = true
-    elsif arguments[0].is_a? Numeric
+    start = 0
+    if arguments[0].is_a? Numeric
       acum = arguments[0]
+      sym = arguments[1].to_s
+    elsif (arguments[0].is_a? Symbol) || arguments[0].nil?
+      acum = Array(self)[0]
+      sym = arguments[0].to_s
+      start = 1
     end
-    Array(self).my_each_with_index do |item, index|
-      next if skip_flag && index.zero?
-
-      if block_given?
-        acum = yield(acum, item)
-      elsif arguments[0].class == Symbol
-        acum = acum.send(arguments[0], item)
-      elsif arguments[0].is_a? Numeric
-        acum = acum.send(arguments[1], item)
-      end
+    (start...Array(self).length).each do |i|
+      acum = if block_given?
+              yield(acum, Array(self)[i])
+            else
+              acum.send(sym, Array(self)[i])
+            end
     end
     acum
   end
