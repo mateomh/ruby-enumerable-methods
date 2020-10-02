@@ -2,7 +2,7 @@
 
 Microverse Ruby Project #2 -> Enumerable methods using ruby
 
-# RUBY-bubble-sort
+# RUBY - Enumerable methods
 
 In this project we created an Enumerable module, that has several custom enumerable methods:
 
